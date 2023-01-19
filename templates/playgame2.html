@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+                <button type="button" onclick="location.href='/'" class="text-center btn btn-outline-secondary position-absolute end-0">ホーム</button>
+        </div>
+    </nav>
+<div class="container">
+    <div class="space-50"></div>
+    <div class="word-pink">*注 まだリセットできません</div>
+    <div class="word-pink">*注 リセットしたい場合はブラウザをリロードしてください</div>
+
+    <div class="font word-pink mt-5">初期手札</div>
+
+    <!-- ここの冗長な表現をどうにかしたい -->
+    <!-- 何かアイデアあれば教えて -->
+
+    <input type="button" value="{{all[0]}}" onclick="myfunc(this)">
+    <input type="button" value="{{all[1]}}" onclick="myfunc(this)">
+    <input type="button" value="{{all[2]}}" onclick="myfunc(this)">
+    <input type="button" value="{{all[3]}}" onclick="myfunc(this)">
+
+    <div class="font word-pink mt-3">配られた手札</div>
+
+    <p></p>
+
+    <button data-index="22" type="button" class="btn btn-primary" onclick="reset()">リセット</button>
+
+    <div class="font word-pink mt-3">解答</div>
+
+
+    <input type="button" value="button" onclick="Coｍplete()">
+        <div class="font word-pink" id="sampleArea">
+
+        </div>
+        <button type="button" onclick="location.href='/final'" class="text-center mt-5 btn btn-primary">解答する</button>
+        <p class="mb-5">  </p>
+
+    <script>
+    let count = 0;
+    let flag = 0;
+    var words= []
+    var e
+
+    var myfunc = function (button) {
+        var element = document.getElementById("sampleArea");
+        button.disabled = true;
+        words.push(button.value)
+        element.innerHTML = words.join("");
+    }
+
+    function foo(e){
+        console.log(e)
+        // var sampleArea = document.getElementById("sampleArea");
+        // sampleArea.insertAdjacentHTML("beforebegin", '<span type="text" name="word" >' + document.getElementsByTagName('button')[e].textContent + '</span>');
+        // words.push(document.getElementsByTagName('button')[e].textContent)
+        // document.getElementsByTagName('button')[e].disabled = true;
+    }
+    // console.log(foo().words)
+    function reset(){
+        while(count <= {{ len }}){
+            document.getElementsByTagName('button')[count].disabled = false;
+            sampleArea.value = "";
+            count++;
+        };
+        count = 0;
+    }
+
+    </script>
+
+</div>
+{% endblock %}

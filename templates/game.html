@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div style="line-height: 30pt;">
+            <p style="line-height : 30px;"></p>
+            <div class="text-left h-100 p-3">
+                <h2 class="word-pink">ユーザー名 : {{ name }}</h2>
+            </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+    <p style="line-height : 30px;"></p>
+    <button type="button" onclick="location.href='/playgame'" class="btn btn-primary">ゲームを始める</button>
+    </div>
+    </div>
+</div>
+<script>
+    let u_name = {{ name|tojson }};
+    sessionStorage.setItem('name', u_name)
+</script>
+{% endblock %}

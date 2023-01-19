@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <div class="mt-5"></div>
+    <div class="ans-font word-pink text-center" id="ansArea">
+        <!-- ここに解答が記述される -->
+    </div>
+    <form action="/" method="GET">
+        <div id="send">
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto mb-5">
+           <input type="submit" value="最初のページに戻る" class="text-center mt-5 btn btn-primary">
+        </div>
+    </form>
+    <div id="tweet"></div>
+    <div class="box26 mb-5" style="padding:30px;">
+        <span class="box-title">Titles</span>
+        <p class="mb-4"></p>
+        {% for post in posts %}
+            <p class="word-pink font text-center">{{post.words}}</p>
+            <p class="word-pink list-font right mb-3">{{post.postname}}</p>
+            <p class="box mb-5"></p>
+        {% endfor %}
+    </div>
+<script>
+    const word = sessionStorage.getItem('ans');
+    var element = document.getElementById("ansArea");
+    element.innerHTML = word;
+    var elm = document.createElement('input');
+    elm.name = 'eroword';
+    elm.value = word;
+    elm.type = 'hidden'
+    var parent = document.getElementById("send");
+    parent.appendChild(elm);
+
+    var link = document.createElement('a');
+    link.href = 'https://twitter.com/share?url=https://hal0404.pythonanywhere.com&text=' + word + '%0d&hashtags=AVタイトルクリエイター';
+    link.className = 'twitter-share-button';
+    link.id = 'tweetlink';
+    var tw = document.getElementById("tweet");
+    tw.appendChild(link);
+    const a = document.getElementById("tweetlink")
+    a.textContent = "Tweet";
+
+
+</script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% endblock %}

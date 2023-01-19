@@ -1,0 +1,133 @@
+body {
+    background-color:#34334B;
+    font-family: "comic", sans-serif;
+  }
+
+  @font-face {
+    font-family: "comic";
+    src: url("../fonts/f910-shin-comic-2.04.otf");
+    format-weight: otf;
+  }
+
+  .font1 {
+    font-family: "comic", sans-serif;
+  }
+  
+  .card-group {
+    display: flex;
+    font-family: sans-serif;
+  }
+  
+  .card {
+    margin: 0 1em;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+    padding: 1em;
+    width: 5em;
+  }
+  
+  .card > div {
+    text-align: center;
+  }
+  
+  .card.hold {
+    background-color: rgb(177, 206, 177);
+  }
+
+  .bg-nav {
+    background-color: #FFCCFF;
+  }
+
+  .space-50 {
+    margin-bottom: 50px;
+  }
+
+  .space-100 {
+    margin-bottom: 100px;
+  }
+
+  .space-150 {
+    margin-bottom: 150px;
+  }
+
+  .word-pink {
+    color: #FF00FF;
+  }
+
+  .word-white {
+    color: rgb(255, 255, 255);
+  }
+
+  .word-gray {
+    color: #d3d3d3;
+  }
+
+  .font {
+    font-size: 16pt
+  }
+
+  .ans-font {
+    font-size: 26pt
+  }
+
+  .list-font {
+    font-size: 14pt
+  } 
+
+  .right{
+    text-align: right
+  }
+
+  .box26 {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: 3px dotted #ffffff;
+    border-radius: 8px;
+}
+.box26 .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 19px;
+    background:#34334B;
+    color: #ffffff;
+    font-weight: bold;
+}
+.box26 p {
+    margin: 0; 
+    padding: 0;
+}
+
+p.box {
+  border-top: 3px dotted white;
+}
+
+.m-le {
+  margin-left: 1em;
+}
+
+.m-ri {
+  margin-right: 5px;
+}
+
+.under-line {
+  text-decoration:underline;
+  text-decoration-color:#FFCCFF;
+  }
+
+  .bt {
+    padding-top: 10px;
+    justify-content: space-evenly;
+  }
+
+table{
+  margin: auto;
+}
+
+.col {
+  color: #EEEEEE
+}

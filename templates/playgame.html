@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <div id="user" class="navbar-brand mb-0 h1"></div>
+            <button type="button" onclick="location.href='/'" class="text-center btn btn-outline-secondary position-absolute end-0">ホーム</button>
+    </div>
+</nav>
+<div class="container">
+    <div class="space-50"></div>
+    <div class="font word-pink mt-5">初期手札</div>
+    <table>
+        <div id="ini" class="bt"></div>
+        <div class="font word-pink mt-3">配られた手札</div>
+        <div id="deli" class="bt"></div>
+    </table>
+    <input type="button" class="mt-5 btn btn-primary" style="width:100px" value="リセット" onclick="reset(),myfunc(this)">
+
+    <div class="font word-pink mt-3">解答</div>
+    <div class="font word-pink" id="ansArea">
+        <!-- ここに解答が記述される -->
+    </div>
+    <div class="send">
+        <input type="submit" value="解答する" class="text-center mt-5 btn btn-primary" onclick="myfunc(this)">
+    </div>
+    <p class="mb-5"></p>
+</div>
+    <script>
+    let count = 0;
+    let flag = 0;
+    var words = []
+    var e
+    const u_name = sessionStorage.getItem('name');
+    var userArea = document.getElementById("user");
+    var iniArea = document.getElementById('ini');
+    var deliArea = document.getElementById('deli');
+    userArea.innerHTML = 'User:' + u_name;
+    function reset(){
+        var element = document.getElementById("ansArea").innerHTML = '';
+        const qs1 = document.querySelectorAll('input[type="button"]');
+        for (let i = 0; i < qs1.length; i++) {
+            qs1.item(i).disabled = false;
+        }
+    }
+
+    var myfunc = function(button) {
+        if(button.value == 'リセット'){
+                words = []
+                return
+            }
+        if(button.value == '解答する'){
+            var word = words.join("");
+            sessionStorage.setItem('ans',word);
+            var form = document.createElement('form');
+            var request = document.createElement('input');
+
+            form.method = 'POST';
+            form.action = u_name + '/final';
+
+            request.type = 'hidden';
+            request.name = 'eroword'
+            request.value = word;
+            form.appendChild(request);
+            var parent = document.getElementById("send");
+            document.body.appendChild(form);
+            form.submit();
+            sessionStorage.setItem('ans',word);
+            return
+        };
+    }
+    for (let i = 0; i < {{all|tojson}}.length; i++){
+        var ini_h = document.createElement("input");
+        var text = {{ all|tojson }};
+        ini_h.type = "button";
+        ini_h.id = "tag" + i;
+        ini_h.className = "mt-1 btn btn-primary m-ri";
+        ini_h.style = "width:100px";
+        ini_h.value = text[i];
+        ini_h.onclick = function () {
+            var element = document.getElementById("ansArea");
+            document.getElementById("tag" + i).disabled = true;
+            words.push(text[i]);
+            element.innerHTML = words.join("");
+        }
+        if(i < parseInt('{{ini|tojson}}', 10)){
+            console.log(parseInt('{{ini|tojson}}', 10))
+            iniArea.appendChild(ini_h);
+        }
+        else{
+            deliArea.appendChild(ini_h);
+        }
+    }
+    </script>
+{% endblock %}

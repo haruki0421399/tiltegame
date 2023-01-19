@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="mt-5 word-white ans-font text-center under-line">みんなのタイトル集</div>
+<div class="container">
+    <div class="mt-5"></div>
+    <button type="button" onclick="location.href='/'" class="btn btn-outline-info">＜戻る</button>
+    <div class="mt-5"></div>
+    <div>
+        {% for post in posts %}
+            <time id="date" class="word-gray list-font right mb-5">{{post.create_at}}</time>
+            <p class="word-pink font text-center mt-4">{{post.words}}</p>
+            <p class="word-gray list-font right mb-3">{{post.postname}}</p>
+            <p class="box mb-2"></p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}1

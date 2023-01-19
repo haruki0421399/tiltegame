@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <p style="line-height : 30px;"></p>
+    <div class="text-center h-100 p-3">
+        <h1 class="word-pink">ユーザー登録</h1>
+    </div>
+    <form action="/game" method="POST" name="userform" onsubmit="return check()">
+        <label class="word-white" for="username">ユーザー名</label>
+        <p style="line-height : 30px;"></p>
+        <input type="text" id="yname" name="username" placeholder="ユーザー名を入力してください" class="form-control">
+        <p class="word-white help-block">※10字以内</p>
+        <p style="line-height : 30px;"></p>
+        <input type="submit" value="決定" class="btn btn-primary">
+    </form>
+</div>
+<script>
+    function check(){
+        var value = document.userform.username.value;
+        console.log("name");
+        if(value == ""){
+            return false;
+        }
+    }
+</script>
+{% endblock %}
